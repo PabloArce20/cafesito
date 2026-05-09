@@ -1,0 +1,161 @@
+oo<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Quieres salir hoy?</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    font-family:'Montserrat',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    background:black;
+}
+
+/* Fondo morado estilo Cerati */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    linear-gradient(
+        rgba(35,0,55,0.75),
+        rgba(10,0,20,0.85)
+    ),
+    url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1600&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+    filter:blur(2px);
+    transform:scale(1.05);
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:50px;
+    border-radius:30px;
+    background:rgba(20,0,35,0.35);
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 35px rgba(180,120,255,0.15);
+    width:90%;
+    max-width:650px;
+}
+
+h1{
+    color:white;
+    font-size:3rem;
+    margin-bottom:40px;
+    text-shadow:0 0 20px rgba(200,150,255,0.35);
+    font-weight:600;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+button{
+    padding:15px 35px;
+    border:none;
+    border-radius:40px;
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:0.3s ease;
+    font-weight:600;
+}
+
+#yes{
+    background:white;
+    color:black;
+}
+
+#yes:hover{
+    transform:scale(1.08);
+}
+
+#no{
+    background:transparent;
+    border:2px solid white;
+    color:white;
+    position:relative;
+}
+
+.message{
+    margin-top:35px;
+    color:#f1d4ff;
+    font-size:1.2rem;
+    min-height:50px;
+    transition:0.3s;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>¿Quieres salir hoy?</h1>
+
+    <div class="buttons">
+        <button id="yes">Sí</button>
+        <button id="no">No</button>
+    </div>
+
+    <div class="message" id="message"></div>
+
+</div>
+
+<script>
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const message = document.getElementById("message");
+
+const frases = [
+    "No válido, intenta otra vez.",
+    "Mmm… creo que querías decir que sí.",
+    "Esa respuesta no está disponible.",
+    "Piénsalo otra vez 😌",
+    "El café ya estaba emocionado.",
+    "¿Segura? Prometo buena música.",
+    "ajjjj",
+    "Intento fallido, vuelve a probar.",
+    "Tu corazón dijo sí primero.",
+    "Esa opción está temporalmente fuera de servicio."
+];
+
+yesBtn.addEventListener("click", () => {
+    message.innerHTML =
+    "Perfecto, por un café a las 5. Alistate y paso por tu casa.";
+});
+
+noBtn.addEventListener("click", () => {
+
+    const x = Math.random() * 300 - 150;
+    const y = Math.random() * 200 - 100;
+
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+    const random =
+    frases[Math.floor(Math.random() * frases.length)];
+
+    message.innerHTML = random;
+});
+</script>
+
+</body>
+</html>
